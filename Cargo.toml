@@ -1,0 +1,21 @@
+[package]
+name = "shamir"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+
+ark-ff = "0.4.2"
+ark-std = "0.4.0"
+ark-r1cs-std = "0.4.0"
+ark-relations = "0.4.0"
+ark-snark = "0.4.0"
+ark-groth16 = "0.4.0"
+ark-crypto-primitives = "0.4.0"
+sha2 = "0.10.2"
+ark-serialize = "0.4.0"
+ark-ec = { version = "^0.4.0", default-features = false }
+ark-ed-on-bls12-381 = { version = "^0.4.0", features = ["r1cs"] }
+ark-bls12-381 = { version = "0.4.0", features = ["curve"], default-features = false  }
+rand = "0.8.4"
