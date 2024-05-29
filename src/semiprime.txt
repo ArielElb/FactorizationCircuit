@@ -1,0 +1,59 @@
+
+Let's create a zero-knowledge proof system for proving that a committed number is the product of two committed prime numbers. This problem is more complex and involves proving both the primality of numbers and their multiplication.
+
+Problem Definition
+We want to prove that a number 
+𝑛
+n is the product of two prime numbers 
+𝑝
+p and 
+𝑞
+q without revealing 
+𝑝
+p and 
+𝑞
+q. This is known as a proof of a semi-prime.
+
+Implementation Steps
+Define the Circuit:
+The circuit will take witnesses 
+𝑝
+p and 
+𝑞
+q (the prime factors) and a public input 
+𝑛
+n (the number to verify) and enforce the constraints:
+
+𝑛
+=
+𝑝
+×
+𝑞
+n=p×q
+𝑝
+p and 
+𝑞
+q are prime.
+Generate Constraints:
+Create the necessary constraints to check if 
+𝑛
+=
+𝑝
+×
+𝑞
+n=p×q and that 
+𝑝
+p and 
+𝑞
+q are prime.
+
+Setup Phase:
+Generate the proving and verifying keys.
+
+Proving Phase:
+Generate a proof that 
+𝑛
+n is the product of two prime numbers.
+
+Verification Phase:
+Verify the proof.

@@ -5,13 +5,16 @@ use ark_r1cs_std::alloc::AllocVar;
 use ark_r1cs_std::eq::EqGadget;
 use ark_r1cs_std::fields::fp::FpVar;
 use ark_r1cs_std::fields::FieldVar;
-use ark_relations::r1cs::{
-    ConstraintSynthesizer, ConstraintSystem, ConstraintSystemRef, SynthesisError,
-};
 use ark_snark::CircuitSpecificSetupSNARK;
 use ark_snark::SNARK;
 use ark_std::rand::RngCore;
 use ark_std::rand::{Rng, SeedableRng};
+use ark_std::UniformRand;
+
+use ark_relations::r1cs::{
+    ConstraintSynthesizer, ConstraintSystem, ConstraintSystemRef, SynthesisError,
+};
+
 // Define the factorization circuit
 // derive clone
 #[derive(Clone)]
@@ -43,7 +46,6 @@ impl ConstraintSynthesizer<Fr> for FactorizationCircuit {
 
 fn main() {
     // Generate random parameters for the Groth16 proof system
-    use ark_std::UniformRand;
     let mut rng = ark_std::rand::rngs::StdRng::seed_from_u64(ark_std::test_rng().next_u64());
 
     let circut = FactorizationCircuit {
@@ -74,8 +76,19 @@ fn main() {
     let false_product = product_.double();
     // Verify the proof
     let is_valid = Groth16::<Bls12_381>::verify(&vk, &vec![product_], &proof).unwrap();
+
     assert!(is_valid);
 
     // Print the proof
-    println!("Proof: {:?}", proof);
+    // println!("Proof: {:?}", proof);
+
+    // Add a tracesub function to print nicely formatted information
+    fn tracesub<T: std::fmt::Debug>(name: &str, value: T) {
+        println!("{}: {:?}", name, value);
+    }
+
+    // Example usage of tracesub
+    tracesub("a", a_);
+    tracesub("b", b_);
+    tracesub("product", product_);
 }
